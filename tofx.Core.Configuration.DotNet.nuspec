@@ -14,7 +14,7 @@
     </dependencies>-->
   </metadata>
   <files>
-    <file src="Configuration.DotNet\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
-    <file src="Configuration.DotNet\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
+    <file src="Configuration.DotNet\bin\$configuration$\$id$.dll" target="lib\net462\$id$.dll" />
+    <file src="Configuration.DotNet\bin\$configuration$\$id$.pdb" target="lib\net462\$id$.pdb" />
   </files>
 </package>

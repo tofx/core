@@ -3,7 +3,7 @@
     <metadata>
         <id>$id$</id>
         <version>$buildversion$</version>
-        <title>TOFX Core Abstractions</title>
+        <title>$title$</title>
         <authors>$author$</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>$description$</description>
