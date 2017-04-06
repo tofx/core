@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class DictionaryExtensions
     {
         public static void Merge<TKey, TValue, TMergeKey, TMergeValue>(
             this IDictionary<TKey, TValue> collection, IEnumerable<KeyValuePair<TMergeKey, TMergeValue>> collectionMerge, 
-            bool ThrowIfKeyExists = false, bool OverwriteExists = true)
+            bool throwIfKeyExists = false, bool overwriteExists = true)
         {
             if (collectionMerge == null)
                 throw new ArgumentNullException("collectionMerge", "E_MERGE_COLLECTION_NOT_FOUND");
@@ -28,9 +28,9 @@ namespace TOF.Core.Utils.TypeExtensions
 
                 if (collection.ContainsKey(mergeKey))
                 {
-                    if (ThrowIfKeyExists)
+                    if (throwIfKeyExists)
                         throw new InvalidOperationException("E_MERGE_KEY_FOUND");
-                    if (OverwriteExists)
+                    if (overwriteExists)
                         collection[mergeKey] = mergeValue;
                 }
                 else
@@ -41,8 +41,8 @@ namespace TOF.Core.Utils.TypeExtensions
         }
         public static void Merge<TKey, TValue, TMergeKey, TMergeValue>(
             this IDictionary<TKey, TValue> collection, IEnumerable<KeyValuePair<TMergeKey, TMergeValue>> collectionMerge, 
-            Func<object, TKey> KeyConvertAction, Func<object, TValue> ValueConvertAction,
-            bool ThrowIfKeyExists = false, bool OverwriteExists = true)
+            Func<object, TKey> keyConvertAction, Func<object, TValue> valueConvertAction,
+            bool throwIfKeyExists = false, bool overwriteExists = true)
         {
             if (collectionMerge == null)
                 throw new ArgumentNullException("collectionMerge", "E_MERGE_COLLECTION_NOT_FOUND");
@@ -51,14 +51,14 @@ namespace TOF.Core.Utils.TypeExtensions
 
             foreach (var item in collectionMerge)
             {
-                TKey mergeKey = KeyConvertAction(item.Key);
-                TValue mergeValue = ValueConvertAction(item.Value);
+                TKey mergeKey = keyConvertAction(item.Key);
+                TValue mergeValue = valueConvertAction(item.Value);
 
                 if (collection.ContainsKey(mergeKey))
                 {
-                    if (ThrowIfKeyExists)
+                    if (throwIfKeyExists)
                         throw new InvalidOperationException("E_MERGE_KEY_FOUND");
-                    if (OverwriteExists)
+                    if (overwriteExists)
                         collection[mergeKey] = mergeValue;
                 }
                 else

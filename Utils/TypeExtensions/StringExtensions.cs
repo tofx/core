@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class StringExtensions
     {
@@ -49,7 +49,7 @@ namespace TOF.Core.Utils.TypeExtensions
                     s += "=";
                     break; // One pad char
                 default:
-                    throw new System.Exception("Illegal base64url string");
+                    throw new Exception("Illegal base64url string");
             }
 
             return Convert.FromBase64String(s); // Standard base64 decoder
@@ -68,12 +68,12 @@ namespace TOF.Core.Utils.TypeExtensions
             return secureStr;
         }
 
-        public static bool FoundInValues(this string str, params string[] Values)
+        public static bool FoundInValues(this string str, params string[] values)
         {
-            if (Values == null || Values.Length == 0)
+            if (values == null || values.Length == 0)
                 throw new ArgumentException("NoValuesFound");
 
-            foreach (var v in Values)
+            foreach (var v in values)
             {
                 if (v == str)
                     return true;
@@ -82,12 +82,12 @@ namespace TOF.Core.Utils.TypeExtensions
             return false;
         }
 
-        public static bool ContainsInValues(this string str, params string[] Values)
+        public static bool ContainsInValues(this string str, params string[] values)
         {
-            if (Values == null || Values.Length == 0)
+            if (values == null || values.Length == 0)
                 throw new ArgumentException("NoValuesFound");
 
-            foreach (var v in Values)
+            foreach (var v in values)
             {
                 if (str.Contains(v))
                     return true;

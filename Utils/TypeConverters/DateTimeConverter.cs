@@ -1,22 +1,22 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class DateTimeConverter : ITypeConverter
     {
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return DateTime.MinValue;
 
-            return System.Convert.ToDateTime(ValueToConvert);
+            return System.Convert.ToDateTime(valueToConvert);
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            var v1 = (DateTime)Convert(Value1);
-            var v2 = (DateTime)Convert(Value2);
+            var v1 = (DateTime)Convert(value1);
+            var v2 = (DateTime)Convert(value2);
 
             return v1 == v2;
         }

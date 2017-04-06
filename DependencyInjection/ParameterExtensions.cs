@@ -1,23 +1,23 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public static class ParameterExtensions
     {
-        public static T Named<T>(this IEnumerable<Parameter> Parameters, string Name)
+        public static T Named<T>(this IEnumerable<Parameter> parameters, string name)
         {
             T value = default(T);
             var converterFactory = TypeConverterFactory.GetTypeConverterFactory();
 
-            foreach (var parameter in Parameters)
+            foreach (var parameter in parameters)
             {
                 if (parameter is NamedParameter)
                 {
                     NamedParameter namedParameter = parameter as NamedParameter;
 
-                    if (namedParameter.Name != Name)
+                    if (namedParameter.Name != name)
                         continue;
 
                     object pv = parameter.GetValue();
@@ -41,11 +41,11 @@ namespace TOF.Core.DependencyInjection
             return value;
         }
 
-        public static T TypeAs<T>(this IEnumerable<Parameter> Parameters)
+        public static T TypeAs<T>(this IEnumerable<Parameter> parameters)
         {
             T value = default(T);
 
-            foreach (var parameter in Parameters)
+            foreach (var parameter in parameters)
             {
                 if (parameter is TypedParameter)
                 {

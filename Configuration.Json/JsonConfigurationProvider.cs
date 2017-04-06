@@ -1,4 +1,4 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace TOF.Core.Configuration.Json
+namespace tofx.Core.Configuration.Json
 {
     public class JsonConfigurationProvider : ConfigurationProvider
     {
@@ -18,57 +18,57 @@ namespace TOF.Core.Configuration.Json
         public string Path { get; private set; }
         public bool Optional { get; private set; }
 
-        public JsonConfigurationProvider(string Path) : this(Path, false)
+        public JsonConfigurationProvider(string path) : this(path, false)
         {
         }
 
-        public JsonConfigurationProvider(string Path, bool Optional)
+        public JsonConfigurationProvider(string path, bool optional)
         {
-            ParameterChecker.NotNullOrEmpty(Path);
+            ParameterChecker.NotNullOrEmpty(path);
 
-            this._configurationValues = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            this._keyStack = new Stack<string>();
-            this.Path = Path;
-            this.Optional = Optional;
+            _configurationValues = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            _keyStack = new Stack<string>();
+            Path = path;
+            Optional = optional;
         }
 
         public override void Load()
         {
-            if (File.Exists(this.Path))
+            if (File.Exists(Path))
             {
-                var stream = File.OpenRead(this.Path);
-                this.Load(stream);
-                this.ConfigurationValues = this._configurationValues;
+                var stream = File.OpenRead(Path);
+                Load(stream);
+                ConfigurationValues = _configurationValues;
             }
             else
             {
-                if (!this.Optional)
+                if (!Optional)
                     throw new FileNotFoundException("ERROR_JSON_CONFIGURATION_FILE_NOT_FOUND");
             }
         }
         
         private void Load(Stream stream)
         {
-            this._reader = new JsonTextReader(new StreamReader(stream));
-            this._reader.DateParseHandling = DateParseHandling.None;
-            var o = JObject.Load(this._reader);
+            _reader = new JsonTextReader(new StreamReader(stream));
+            _reader.DateParseHandling = DateParseHandling.None;
+            var o = JObject.Load(_reader);
             TraverseObject(o);
-            this._reader.Close();
+            _reader.Close();
         }
 
         private void TraverseObject(JObject o)
         {
             foreach (var p in o.Properties())
             {
-                this.EnterNextLevel(p.Name);
-                this.TraverseProperty(p);
-                this.LeaveLevel();
+                EnterNextLevel(p.Name);
+                TraverseProperty(p);
+                LeaveLevel();
             }
         }
 
         private void TraverseProperty(JProperty property)
         {
-            this.TraverseToken(property.Value);
+            TraverseToken(property.Value);
         }
 
         private void TraverseToken(JToken token)
@@ -110,24 +110,24 @@ namespace TOF.Core.Configuration.Json
 
         private void TraverseValue(JToken token)
         {
-            string key = this._currentPath;
+            string key = _currentPath;
 
-            if (this._configurationValues.ContainsKey(key))
+            if (_configurationValues.ContainsKey(key))
                 throw new InvalidOperationException("ERROR_DUPLICATED_KEY_FOUND");
 
-            this._configurationValues.Add(key, token.Value<string>());
+            _configurationValues.Add(key, token.Value<string>());
         }
 
-        private void EnterNextLevel(string PropertyName)
+        private void EnterNextLevel(string propertyName)
         {
-            this._keyStack.Push(PropertyName);
-            this._currentPath = string.Join(Constants.Delimiter, this._keyStack.Reverse());
+            _keyStack.Push(propertyName);
+            _currentPath = string.Join(Constants.Delimiter, _keyStack.Reverse());
         }
 
         private void LeaveLevel()
         {
-            this._keyStack.Pop();
-            this._currentPath = string.Join(Constants.Delimiter, this._keyStack.Reverse());
+            _keyStack.Pop();
+            _currentPath = string.Join(Constants.Delimiter, _keyStack.Reverse());
         }
     }
 }

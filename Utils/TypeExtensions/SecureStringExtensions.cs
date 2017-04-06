@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class SecureStringExtensions
     {

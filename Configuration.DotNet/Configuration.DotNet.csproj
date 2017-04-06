@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9DD88232-D15B-44A3-8F28-F4C37245E49A}</ProjectGuid>
+    <ProjectGuid>{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TOF.Core.Configuration</RootNamespace>
-    <AssemblyName>TOF.Core.Configuration</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>tofx.Core.Configuration.DotNet</RootNamespace>
+    <AssemblyName>tofx.Core.Configuration.DotNet</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,19 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="ConfigurationBuilder.cs" />
-    <Compile Include="ConfigurationProvider.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="IConfiguration.cs" />
-    <Compile Include="IConfigurationBuilder.cs" />
-    <Compile Include="IConfigurationProvider.cs" />
+    <Compile Include="DotNetConfigurationBuilderExtensions.cs" />
+    <Compile Include="DotNetConfigurationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Utils\Core.Utils.csproj">
-      <Project>{230e597f-ec69-4367-8339-c4a87eb042e2}</Project>
-      <Name>Core.Utils</Name>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{9dd88232-d15b-44a3-8f28-f4c37245e49a}</Project>
+      <Name>Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

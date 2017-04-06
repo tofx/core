@@ -1,4 +1,4 @@
-﻿namespace TOF.Core.DependencyInjection
+﻿namespace tofx.Core.DependencyInjection
 {
     public abstract class Parameter
     {

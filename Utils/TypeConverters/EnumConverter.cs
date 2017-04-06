@@ -1,40 +1,40 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class EnumConverter : ITypeConverter
     {
         private Type _enumType = null;
 
-        public EnumConverter(Type EnumType)
+        public EnumConverter(Type enumType)
         {
-            if (EnumType == null)
-                throw new ArgumentNullException("EnumType", "E_ENUM_TYPE_NOT_FOUND");
+            if (enumType == null)
+                throw new ArgumentNullException("enumType", "E_ENUM_TYPE_NOT_FOUND");
 
-            this._enumType = EnumType;
+            _enumType = enumType;
         }
 
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            return Convert(this._enumType, ValueToConvert);
+            return Convert(_enumType, valueToConvert);
         }
 
-        public object Convert(Type EnumType, object ValueToConvert)
+        public object Convert(Type enumType, object valueToConvert)
         {
-            if (!EnumType.IsEnum)
+            if (!enumType.IsEnum)
                 throw new InvalidOperationException("ERROR_TYPE_IS_NOT_ENUMERATION");
 
-            if (ValueToConvert.GetType() == typeof(string))
-                return System.Convert.ChangeType(Enum.Parse(EnumType, ValueToConvert.ToString()), EnumType);
+            if (valueToConvert.GetType() == typeof(string))
+                return System.Convert.ChangeType(Enum.Parse(enumType, valueToConvert.ToString()), enumType);
 
             long v = 0;
 
-            if (ValueToConvert.GetType() == typeof(byte))
-                v = (long)((byte)ValueToConvert);
-            else if (ValueToConvert.GetType() == typeof(byte[]))
+            if (valueToConvert.GetType() == typeof(byte))
+                v = (long)((byte)valueToConvert);
+            else if (valueToConvert.GetType() == typeof(byte[]))
             {
-                byte[] data = (byte[])ValueToConvert;
+                byte[] data = (byte[])valueToConvert;
 
                 if (data.Length < 4)
                     v = (long)BitConverter.ToInt16(data, 0);
@@ -44,24 +44,24 @@ namespace TOF.Core.Utils.TypeConverters
                     v = BitConverter.ToInt64(data, 0);
             }
             else
-                v = (long)System.Convert.ChangeType(ValueToConvert, typeof(long));
+                v = (long)System.Convert.ChangeType(valueToConvert, typeof(long));
 
-            return Enum.ToObject(EnumType, v);
+            return Enum.ToObject(enumType, v);
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
             throw new NotImplementedException();
         }
 
-        public bool Equals(Type EnumType, object Value1, object Value2)
+        public bool Equals(Type enumType, object value1, object value2)
         {
-            if (!EnumType.IsEnum)
+            if (!enumType.IsEnum)
                 throw new InvalidOperationException("ERROR_TYPE_IS_NOT_ENUMERATION");
             
             return
-                System.Convert.ChangeType(Enum.Parse(EnumType, Value1.ToString()), EnumType) ==
-                System.Convert.ChangeType(Enum.Parse(EnumType, Value2.ToString()), EnumType); 
+                System.Convert.ChangeType(Enum.Parse(enumType, value1.ToString()), enumType) ==
+                System.Convert.ChangeType(Enum.Parse(enumType, value2.ToString()), enumType); 
         }
         
         public Type GetCompatibleType()

@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class NameValueCollectionExtensions
     {
-        public static IDictionary<string, string> ToDictionary(this NameValueCollection Collection)
+        public static IDictionary<string, string> ToDictionary(this NameValueCollection collection)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
 
-            if (Collection == null)
+            if (collection == null)
                 return dic;
 
-            for (int i=0; i<Collection.Count; i++)
+            for (int i=0; i<collection.Count; i++)
             {
-                string key = Collection.Keys[i];
-                string value = Collection[key];
+                string key = collection.Keys[i];
+                string value = collection[key];
 
                 dic.Add(key, value);
             }
@@ -24,23 +24,23 @@ namespace TOF.Core.Utils.TypeExtensions
             return dic;
         }
 
-        public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this NameValueCollection Collection)
+        public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this NameValueCollection collection)
             where TKey: IConvertible
             where TValue: IConvertible
         {
             Dictionary<TKey, TValue> dic = new Dictionary<TKey, TValue>();
             var converterFactory = TypeConverterFactory.GetTypeConverterFactory();
 
-            if (Collection == null)
+            if (collection == null)
                 return dic;
 
             var keyConverter = converterFactory.GetConvertType<TKey>();
             var valueConverter = converterFactory.GetConvertType<TValue>();
 
-            for (int i = 0; i < Collection.Count; i++)
+            for (int i = 0; i < collection.Count; i++)
             {
-                string key = Collection.Keys[i];
-                string value = Collection[key];
+                string key = collection.Keys[i];
+                string value = collection[key];
 
                 TKey keyCasted = (keyConverter != null)
                     ? (TKey)keyConverter.Convert(key)
@@ -57,20 +57,20 @@ namespace TOF.Core.Utils.TypeExtensions
 
 
         public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(
-            this NameValueCollection Collection, Func<string, TKey> KeyConvertAction, Func<string, TValue> ValueConvertAction)
+            this NameValueCollection collection, Func<string, TKey> keyConvertAction, Func<string, TValue> valueConvertAction)
         {
             Dictionary<TKey, TValue> dic = new Dictionary<TKey, TValue>();
 
-            if (Collection == null)
+            if (collection == null)
                 return dic;
 
-            for (int i = 0; i < Collection.Count; i++)
+            for (int i = 0; i < collection.Count; i++)
             {
-                string key = Collection.Keys[i];
-                string value = Collection[key];
+                string key = collection.Keys[i];
+                string value = collection[key];
 
-                TKey keyCasted = KeyConvertAction(key);
-                TValue valueCasted = ValueConvertAction(value);
+                TKey keyCasted = keyConvertAction(key);
+                TValue valueCasted = valueConvertAction(value);
 
                 dic.Add(keyCasted, valueCasted);
             }

@@ -1,4 +1,4 @@
-﻿namespace TOF.Core.Configuration
+﻿namespace tofx.Core.Configuration
 {
     public class Constants
     {

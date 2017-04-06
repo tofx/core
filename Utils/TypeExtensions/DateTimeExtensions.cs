@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class DateTimeExtensions
     {
@@ -14,35 +14,35 @@ namespace TOF.Core.Utils.TypeExtensions
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
         }
 
-        public static bool IsInRange(this DateTime dateTime, DateTime RangeStart, DateTime RangeEnd)
+        public static bool IsInRange(this DateTime dateTime, DateTime rangeStart, DateTime rangeEnd)
         {
-            return RangeStart <= dateTime && RangeEnd >= dateTime;
+            return rangeStart <= dateTime && rangeEnd >= dateTime;
         }
 
-        public static bool IsInRangeAtDayLevel(this DateTime dateTime, DateTime RangeStart, DateTime RangeEnd)
+        public static bool IsInRangeAtDayLevel(this DateTime dateTime, DateTime rangeStart, DateTime rangeEnd)
         {
-            DateTime dateStart = new DateTime(RangeStart.Year, RangeStart.Month, RangeStart.Day, 0, 0, 0);
-            DateTime dateEnd = new DateTime(RangeEnd.Year, RangeEnd.Month, RangeEnd.Day, 23, 59, 59);
+            DateTime dateStart = new DateTime(rangeStart.Year, rangeStart.Month, rangeStart.Day, 0, 0, 0);
+            DateTime dateEnd = new DateTime(rangeEnd.Year, rangeEnd.Month, rangeEnd.Day, 23, 59, 59);
 
             return (dateStart <= dateTime && dateEnd >= dateTime);
         }
 
-        public static bool IsInRangeAtHourLevel(this DateTime dateTime, DateTime RangeStart, DateTime RangeEnd)
+        public static bool IsInRangeAtHourLevel(this DateTime dateTime, DateTime rangeStart, DateTime rangeEnd)
         {
             DateTime dateStart = new DateTime(
-                RangeStart.Year, RangeStart.Month, RangeStart.Day, RangeStart.Hour, 0, 0);
+                rangeStart.Year, rangeStart.Month, rangeStart.Day, rangeStart.Hour, 0, 0);
             DateTime dateEnd = new DateTime(
-                RangeEnd.Year, RangeEnd.Month, RangeEnd.Day, RangeEnd.Hour, 59, 59);
+                rangeEnd.Year, rangeEnd.Month, rangeEnd.Day, rangeEnd.Hour, 59, 59);
 
             return (dateStart <= dateTime && dateEnd >= dateTime);
         }
 
-        public static bool IsInRangeAtMinuteLevel(this DateTime dateTime, DateTime RangeStart, DateTime RangeEnd)
+        public static bool IsInRangeAtMinuteLevel(this DateTime dateTime, DateTime rangeStart, DateTime rangeEnd)
         {
             DateTime dateStart = new DateTime(
-                RangeStart.Year, RangeStart.Month, RangeStart.Day, RangeStart.Hour, RangeStart.Minute, 0);
+                rangeStart.Year, rangeStart.Month, rangeStart.Day, rangeStart.Hour, rangeStart.Minute, 0);
             DateTime dateEnd = new DateTime(
-                RangeEnd.Year, RangeEnd.Month, RangeEnd.Day, RangeEnd.Hour, RangeEnd.Minute, 59);
+                rangeEnd.Year, rangeEnd.Month, rangeEnd.Day, rangeEnd.Hour, rangeEnd.Minute, 59);
 
             return (dateStart <= dateTime && dateEnd >= dateTime);
         }

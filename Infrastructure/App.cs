@@ -1,8 +1,8 @@
-﻿using TOF.Core.Configuration;
-using TOF.Core.DependencyInjection;
+﻿using tofx.Core.Configuration;
+using tofx.Core.DependencyInjection;
 using System;
 
-namespace TOF.Core.Infrastructure
+namespace tofx.Core.Infrastructure
 {
     public static class App
     {

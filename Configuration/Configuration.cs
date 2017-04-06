@@ -1,33 +1,31 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TOF.Core.Configuration
+namespace tofx.Core.Configuration
 {
     public class Configuration : IConfiguration
     {
-        private IList<IConfigurationProvider> _providers = null;
+        private readonly IList<IConfigurationProvider> _providers;
 
-        public Configuration(IList<IConfigurationProvider> Providers)
+        public Configuration(IList<IConfigurationProvider> providers)
         {
-            ParameterChecker.NotNull(Providers);
+            ParameterChecker.NotNull(providers);
 
-            if (!Providers.Any())
+            if (!providers.Any())
                 throw new InvalidOperationException("ERROR_NO_PROVIDER_FOUND");
 
-            this._providers = Providers;
+            _providers = providers;
         }
 
-        public string this[string Key]
+        public string this[string key]
         {
             get
             {
-                string value = null;
-
-                foreach (var provider in this._providers)
+                foreach (var provider in _providers)
                 {
-                    if (provider.TryGet(Key, out value))
+                    if (provider.TryGet(key, out string value))
                         return value;
                 }
 

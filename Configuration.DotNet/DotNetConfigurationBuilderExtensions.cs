@@ -1,6 +1,6 @@
-﻿using TOF.Core.Configuration.DotNet;
+﻿using tofx.Core.Configuration.DotNet;
 
-namespace TOF.Core.Configuration
+namespace tofx.Core.Configuration
 {
     /// <summary>
     /// KF-NG Framework 組態系統 .NET Framework 組態提供者擴充程式。

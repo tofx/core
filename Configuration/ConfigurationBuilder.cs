@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TOF.Core.Configuration
+namespace tofx.Core.Configuration
 {
     public class ConfigurationBuilder : IConfigurationBuilder
     {
@@ -8,20 +8,20 @@ namespace TOF.Core.Configuration
 
         public ConfigurationBuilder()
         {
-            this._providers = new List<IConfigurationProvider>();
+            _providers = new List<IConfigurationProvider>();
         }
 
-        public void Add(IConfigurationProvider Provider)
+        public void Add(IConfigurationProvider provider)
         {
-            this._providers.Add(Provider);
+            _providers.Add(provider);
         }
 
         public IConfiguration Build()
         {
-            foreach (var provider in this._providers)
+            foreach (var provider in _providers)
                 provider.Load();
 
-            return new Configuration(this._providers);
+            return new Configuration(_providers);
         }
     }
 }

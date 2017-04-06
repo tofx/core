@@ -1,33 +1,33 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class StringConverter : ITypeConverter
     {
         private StringComparison _comparsionMode = StringComparison.InvariantCultureIgnoreCase;
 
-        public StringConverter(StringComparison ComparsionMode = StringComparison.InvariantCultureIgnoreCase)
+        public StringConverter(StringComparison comparsionMode = StringComparison.InvariantCultureIgnoreCase)
         {
-            _comparsionMode = ComparsionMode;
+            _comparsionMode = comparsionMode;
         }
 
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return string.Empty;
 
-            return ValueToConvert.ToString();
+            return valueToConvert.ToString();
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            if (Value1 == null && Value2 == null)
+            if (value1 == null && value2 == null)
                 return true;
-            else if (Value1 == null || Value2 == null)
+            else if (value1 == null || value2 == null)
                 return false;
             else
-                return string.Compare(Value1.ToString(), Value2.ToString(), _comparsionMode) == 0;
+                return string.Compare(value1.ToString(), value2.ToString(), _comparsionMode) == 0;
         }
 
         public Type GetCompatibleType()

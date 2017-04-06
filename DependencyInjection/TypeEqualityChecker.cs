@@ -1,20 +1,20 @@
 ﻿using System;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class TypeEqualityChecker
     {
-        public static bool CheckEqual(Type T1, Type T2)
+        public static bool CheckEqual(Type t1, Type t2)
         {
-            if (T1.AssemblyQualifiedName == T2.AssemblyQualifiedName)
+            if (t1.AssemblyQualifiedName == t2.AssemblyQualifiedName)
                 return true;
             else
                 return false;
         }
 
-        public static bool CheckInstanceEqual(Type T1, Type T2)
+        public static bool CheckInstanceEqual(Type t1, Type t2)
         {
-            return T1.Equals(T2);
+            return t1.Equals(t2);
         }
     }
 }

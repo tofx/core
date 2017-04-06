@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class TypedParameter : Parameter
     {
@@ -12,15 +12,15 @@ namespace TOF.Core.DependencyInjection
 
         private object _value = null;
 
-        public static TypedParameter From<T>(T Value)
+        public static TypedParameter From<T>(T value)
         {
-            return new TypedParameter(typeof(T), Value);
+            return new TypedParameter(typeof(T), value);
         }
 
-        public TypedParameter(Type ObjectType, object Value)
+        public TypedParameter(Type objectType, object value)
         {
-            Type = ObjectType;
-            _value = Value;
+            Type = objectType;
+            _value = value;
         }
 
         public override bool CanProvideValue()

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class ObjectExtensions
     {

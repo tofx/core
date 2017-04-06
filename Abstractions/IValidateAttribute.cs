@@ -1,7 +1,7 @@
-﻿namespace TOF.Core.Abstractions
+﻿namespace tofx.Core.Abstractions
 {
     public interface IValidateAttribute
     {
-        bool IsValid(object Value);
+        bool IsValid(object value);
     }
 }

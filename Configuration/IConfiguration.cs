@@ -1,7 +1,7 @@
-﻿namespace TOF.Core.Configuration
+﻿namespace tofx.Core.Configuration
 {
     public interface IConfiguration
     {
-        string this[string Key] { get; }
+        string this[string key] { get; }
     }
 }

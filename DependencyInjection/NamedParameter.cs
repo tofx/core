@@ -1,4 +1,4 @@
-﻿namespace TOF.Core.DependencyInjection
+﻿namespace tofx.Core.DependencyInjection
 {
     public class NamedParameter : Parameter
     {
@@ -6,10 +6,10 @@
 
         public string Name { get; private set; }
 
-        public NamedParameter(string Name, object Value)
+        public NamedParameter(string name, object value)
         {
-            this.Name = Name;
-            _value = Value;
+            Name = name;
+            _value = value;
         }
 
         public override bool CanProvideValue()

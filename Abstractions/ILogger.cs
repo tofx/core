@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace TOF.Core.Abstractions
+namespace tofx.Core.Abstractions
 {
     public interface ILogger
     {
-        void Write(LogTypes LogType, string Info, string Data = null);
-        void Write(LogTypes LogType, Type LogRequestType, string Info, string Data = null);
-        void Write<T>(LogTypes LogType, string Info, string Data = null);
+        void Write(LogTypes logType, string info, string data = null);
+        void Write(LogTypes logType, Type logRequestType, string info, string data = null);
+        void Write<T>(LogTypes logType, string info, string data = null);
     }
 }

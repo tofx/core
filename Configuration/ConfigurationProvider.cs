@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace TOF.Core.Configuration
+namespace tofx.Core.Configuration
 {
     public abstract class ConfigurationProvider : IConfigurationProvider
     {
@@ -16,14 +15,14 @@ namespace TOF.Core.Configuration
         {
         }
 
-        public virtual void Set(string Key, string Value)
+        public virtual void Set(string key, string value)
         {
-            ConfigurationValues[Key] = Value;
+            ConfigurationValues[key] = value;
         }
 
-        public virtual bool TryGet(string Key, out string Value)
+        public virtual bool TryGet(string key, out string value)
         {
-            return ConfigurationValues.TryGetValue(Key, out Value);
+            return ConfigurationValues.TryGetValue(key, out value);
         }
     }
 }

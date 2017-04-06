@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2259E597-781E-425A-B165-59D8C700C323}</ProjectGuid>
+    <ProjectGuid>{8F4C4C50-C046-499A-AD78-2E55F51A123A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TOF.Core.Configuration.Json</RootNamespace>
-    <AssemblyName>TOF.Core.Configuration.Json</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>tofx.Core.DependencyInjection</RootNamespace>
+    <AssemblyName>tofx.Core.DependencyInjection</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,21 +41,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonConfigurationBuilderExtensions.cs" />
-    <Compile Include="JsonConfigurationProvider.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="ContainerBuilder.cs" />
+    <Compile Include="MapNotFoundException.cs" />
+    <Compile Include="NamedParameter.cs" />
+    <Compile Include="ObjectActivatingFailedException.cs" />
+    <Compile Include="ObjectActivator.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="ParameterExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration.cs" />
+    <Compile Include="RegistrationManager.cs" />
+    <Compile Include="StartupAttribute.cs" />
+    <Compile Include="StartupTypeNotFoundException.cs" />
+    <Compile Include="TypedParameter.cs" />
+    <Compile Include="TypeEqualityChecker.cs" />
+    <Compile Include="TypeResolveFailedException.cs" />
+    <Compile Include="ValueParameter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Configuration\Core.Configuration.csproj">
-      <Project>{9dd88232-d15b-44a3-8f28-f4c37245e49a}</Project>
-      <Name>Core.Configuration</Name>
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj">
+      <Project>{d99b16d4-829f-47f9-8530-eaf517bdab70}</Project>
+      <Name>Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Utils\Core.Utils.csproj">
+    <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{230e597f-ec69-4367-8339-c4a87eb042e2}</Project>
-      <Name>Core.Utils</Name>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

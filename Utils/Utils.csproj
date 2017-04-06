@@ -7,10 +7,11 @@
     <ProjectGuid>{230E597F-EC69-4367-8339-C4A87EB042E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TOF.Core.Utils</RootNamespace>
-    <AssemblyName>TOF.Core.Utils</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>tofx.Core.Utils</RootNamespace>
+    <AssemblyName>tofx.Core.Utils</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,9 +67,9 @@
     <Compile Include="TypeExtensions\TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Abstractions\Core.Abstractions.csproj">
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{d99b16d4-829f-47f9-8530-eaf517bdab70}</Project>
-      <Name>Core.Abstractions</Name>
+      <Name>Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

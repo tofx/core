@@ -1,24 +1,24 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class Container
     {
         private RegistrationManager _registrationManager = null;
         private ObjectActivator _activator = null;
 
-        public Container(Dictionary<Type, Registration> MapRegistrations)
+        public Container(Dictionary<Type, Registration> mapRegistrations)
         {
-            ParameterChecker.NotNull(MapRegistrations);
-            _registrationManager = new RegistrationManager(MapRegistrations);
+            ParameterChecker.NotNull(mapRegistrations);
+            _registrationManager = new RegistrationManager(mapRegistrations);
             _activator = new ObjectActivator();
         }
 
-        public T Resolve<T>(params object[] Parameters)
+        public T Resolve<T>(params object[] parameters)
         {
-            var instance = Resolve(typeof(T), Parameters);
+            var instance = Resolve(typeof(T), parameters);
             return (T)instance;
         }
 
@@ -28,9 +28,9 @@ namespace TOF.Core.DependencyInjection
         //    return (T)instance;
         //}
 
-        public object Resolve(Type ResolveType, params object[] Parameters)
+        public object Resolve(Type resolveType, params object[] Parameters)
         {
-            var registration = _registrationManager.Find(ResolveType);
+            var registration = _registrationManager.Find(resolveType);
 
             if (registration == null)
                 throw new TypeResolveFailedException();
@@ -52,14 +52,14 @@ namespace TOF.Core.DependencyInjection
 
             if (registration.IsPropertiesAutowired)
             {
-                foreach (var property in ResolveType.GetProperties())
+                foreach (var property in resolveType.GetProperties())
                 {
                     if (property.PropertyType.IsValueType)
                         continue;
 
                     if (property.PropertyType.IsInterface)
                     {
-                        object propertyInstance = this.Resolve(property.PropertyType);
+                        object propertyInstance = Resolve(property.PropertyType);
 
                         if (propertyInstance != null)
                             property.SetValue(instance, propertyInstance);
@@ -70,9 +70,9 @@ namespace TOF.Core.DependencyInjection
             return instance;
         }
 
-        public object Resolve(Type ResolveType, Type[] GenericTypeParams, params object[] Parameters)
+        public object Resolve(Type resolveType, Type[] genericTypeParams, params object[] Parameters)
         {
-            var registration = _registrationManager.Find(ResolveType);
+            var registration = _registrationManager.Find(resolveType);
 
             if (registration == null)
                 throw new TypeResolveFailedException();
@@ -93,18 +93,18 @@ namespace TOF.Core.DependencyInjection
                 }
             }
 
-            object instance = _activator.CreateGeneric(this, registration, GenericTypeParams, parameters.ToArray());
+            object instance = _activator.CreateGeneric(this, registration, genericTypeParams, parameters.ToArray());
 
             if (registration.IsPropertiesAutowired)
             {
-                foreach (var property in ResolveType.GetProperties())
+                foreach (var property in resolveType.GetProperties())
                 {
                     if (property.PropertyType.IsValueType)
                         continue;
 
                     if (property.PropertyType.IsInterface)
                     {
-                        object propertyInstance = this.Resolve(property.PropertyType);
+                        object propertyInstance = Resolve(property.PropertyType);
 
                         if (propertyInstance != null)
                             property.SetValue(instance, propertyInstance);
@@ -115,16 +115,16 @@ namespace TOF.Core.DependencyInjection
             return instance;
         }
 
-        public TGeneric ResolveGeneric<TGeneric>(Type[] GenericTypes, params object[] Parameters)
+        public TGeneric ResolveGeneric<TGeneric>(Type[] genericTypes, params object[] parameters)
         {
-            return (TGeneric)ResolveGeneric(typeof(TGeneric), GenericTypes, Parameters);
+            return (TGeneric)ResolveGeneric(typeof(TGeneric), genericTypes, parameters);
         }
 
-        public object ResolveGeneric(Type ResolveType, Type[] GenericTypes, params object[] Parameters)
+        public object ResolveGeneric(Type resolveType, Type[] genericTypes, params object[] Parameters)
         {
-            var registration = (GenericTypes == null || GenericTypes.Length == 0)
-                ? _registrationManager.FindGeneric(ResolveType)
-                : _registrationManager.FindGenericDefinition(ResolveType);
+            var registration = (genericTypes == null || genericTypes.Length == 0)
+                ? _registrationManager.FindGeneric(resolveType)
+                : _registrationManager.FindGenericDefinition(resolveType);
 
             if (registration == null)
                 throw new TypeResolveFailedException();
@@ -142,20 +142,20 @@ namespace TOF.Core.DependencyInjection
                 }
             }
 
-            object instance = (GenericTypes == null || GenericTypes.Length == 0)
+            object instance = (genericTypes == null || genericTypes.Length == 0)
                 ? _activator.Create(this, registration, parameters.ToArray())
-                : _activator.CreateGeneric(this, registration, GenericTypes, parameters.ToArray());
+                : _activator.CreateGeneric(this, registration, genericTypes, parameters.ToArray());
 
             if (registration.IsPropertiesAutowired)
             {
-                foreach (var property in ResolveType.GetProperties())
+                foreach (var property in resolveType.GetProperties())
                 {
                     if (property.PropertyType.IsValueType)
                         continue;
 
                     if (property.PropertyType.IsInterface)
                     {
-                        object propertyInstance = this.Resolve(property.PropertyType);
+                        object propertyInstance = Resolve(property.PropertyType);
 
                         if (propertyInstance != null)
                             property.SetValue(instance, propertyInstance);

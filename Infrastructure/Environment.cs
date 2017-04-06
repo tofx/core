@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 
-namespace TOF.Core.Infrastructure
+namespace tofx.Core.Infrastructure
 {
     public class Environment : Dictionary<string, object>
     {
-        public static object sLock = new object();
+        public static object SLock = new object();
 
-        public new void Add(string Key, object Value)
+        public new void Add(string key, object value)
         {
-            lock (sLock)
+            lock (SLock)
             {
-                if (base.ContainsKey(Key))
+                if (ContainsKey(key))
                     return;
 
-                base.Add(Key, Value);
+                base.Add(key, value);
             }
         }
 
-        public new void Remove(string Key)
+        public new void Remove(string key)
         {
-            lock (sLock)
+            lock (SLock)
             {
-                base.Remove(Key);
+                base.Remove(key);
             }
         }
     }

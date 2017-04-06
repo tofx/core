@@ -1,22 +1,22 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class DecimalConverter : ITypeConverter
     {
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return 0.0m;
 
-            return System.Convert.ToDecimal(ValueToConvert);
+            return System.Convert.ToDecimal(valueToConvert);
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            var v1 = (decimal)Convert(Value1);
-            var v2 = (decimal)Convert(Value2);
+            var v1 = (decimal)Convert(value1);
+            var v2 = (decimal)Convert(value2);
 
             return v1 == v2;
         }

@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class RegistrationManager
     {
         private IDictionary<Type, Registration> _mapRegistrations = null;
 
-        public RegistrationManager(IDictionary<Type, Registration> MapRegistrations)
+        public RegistrationManager(IDictionary<Type, Registration> mapRegistrations)
         {
-            _mapRegistrations = MapRegistrations;
+            _mapRegistrations = mapRegistrations;
         }
 
-        public Registration Find(Type FindType)
+        public Registration Find(Type findType)
         {
-            if (FindType.IsInterface)
-                return FindInterface(FindType);
+            if (findType.IsInterface)
+                return FindInterface(findType);
             else
-                return FindClass(FindType);
+                return FindClass(findType);
         }
 
-        public Registration FindInterface(Type FindInterfaceType)
+        public Registration FindInterface(Type findInterfaceType)
         {
-            if (!FindInterfaceType.IsInterface)
+            if (!findInterfaceType.IsInterface)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
-            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t.IsInterface && t.FullName == FindInterfaceType.FullName).Any());
+            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t.IsInterface && t.FullName == findInterfaceType.FullName).Any());
 
             if (!query.Any())
                 return null;
@@ -40,12 +40,12 @@ namespace TOF.Core.DependencyInjection
             return query.First().Value;
         }
 
-        public Registration FindClass(Type FindClassType)
+        public Registration FindClass(Type findClassType)
         {
-            if (!FindClassType.IsClass)
+            if (!findClassType.IsClass)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
-            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t == FindClassType).Any());
+            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t == findClassType).Any());
 
             if (!query.Any())
                 return null;
@@ -59,21 +59,21 @@ namespace TOF.Core.DependencyInjection
             return query.First().Value;
         }
 
-        public Registration FindGeneric(Type FindType)
+        public Registration FindGeneric(Type findType)
         {
-            if (FindType.IsInterface)
-                return FindGenericInterface(FindType);
+            if (findType.IsInterface)
+                return FindGenericInterface(findType);
             else
-                return FindGenericClass(FindType);
+                return FindGenericClass(findType);
         }
 
-        public Registration FindGenericInterface(Type FindInterfaceType)
+        public Registration FindGenericInterface(Type findInterfaceType)
         {
-            if (!FindInterfaceType.IsInterface)
+            if (!findInterfaceType.IsInterface)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
             var query = _mapRegistrations.Where(r => r.Value.MapTypes
-                .Where(t =>  t == FindInterfaceType && t.IsGenericType).Any());
+                .Where(t =>  t == findInterfaceType && t.IsGenericType).Any());
 
             if (!query.Any())
                 return null;
@@ -87,12 +87,12 @@ namespace TOF.Core.DependencyInjection
             return query.First().Value;
         }
 
-        public Registration FindGenericClass(Type FindClassType)
+        public Registration FindGenericClass(Type findClassType)
         {
-            if (!FindClassType.IsClass)
+            if (!findClassType.IsClass)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
-            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t == FindClassType && t.IsGenericType).Any());
+            var query = _mapRegistrations.Where(r => r.Value.MapTypes.Where(t => t == findClassType && t.IsGenericType).Any());
 
             if (!query.Any())
                 return null;
@@ -106,21 +106,21 @@ namespace TOF.Core.DependencyInjection
             return query.First().Value;
         }
 
-        public Registration FindGenericDefinition(Type FindType)
+        public Registration FindGenericDefinition(Type findType)
         {
-            if (FindType.IsInterface)
-                return FindGenericInterfaceDefinition(FindType);
+            if (findType.IsInterface)
+                return FindGenericInterfaceDefinition(findType);
             else
-                return FindGenericClassDefinition(FindType);
+                return FindGenericClassDefinition(findType);
         }
 
-        public Registration FindGenericInterfaceDefinition(Type FindInterfaceType)
+        public Registration FindGenericInterfaceDefinition(Type findInterfaceType)
         {
-            if (!FindInterfaceType.IsInterface)
+            if (!findInterfaceType.IsInterface)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
             var query = _mapRegistrations.Where(r => r.Value.MapTypes
-                .Where(t => t == FindInterfaceType && t.IsGenericTypeDefinition).Any());
+                .Where(t => t == findInterfaceType && t.IsGenericTypeDefinition).Any());
 
             if (!query.Any())
                 return null;
@@ -134,13 +134,13 @@ namespace TOF.Core.DependencyInjection
             return query.First().Value;
         }
 
-        public Registration FindGenericClassDefinition(Type FindClassType)
+        public Registration FindGenericClassDefinition(Type findClassType)
         {
-            if (!FindClassType.IsClass)
+            if (!findClassType.IsClass)
                 throw new ArgumentException("ERROR_TYPE_STYLE_MISMATCH");
 
             var query = _mapRegistrations.Where(r => r.Value.MapTypes
-                .Where(t => t == FindClassType && t.IsGenericTypeDefinition).Any());
+                .Where(t => t == findClassType && t.IsGenericTypeDefinition).Any());
 
             if (!query.Any())
                 return null;

@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F4C4C50-C046-499A-AD78-2E55F51A123A}</ProjectGuid>
+    <ProjectGuid>{D99B16D4-829F-47F9-8530-EAF517BDAB70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TOF.Core.DependencyInjection</RootNamespace>
-    <AssemblyName>TOF.Core.DependencyInjection</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>tofx.Core.Abstractions</RootNamespace>
+    <AssemblyName>tofx.Core.Abstractions</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,33 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Container.cs" />
-    <Compile Include="ContainerBuilder.cs" />
-    <Compile Include="MapNotFoundException.cs" />
-    <Compile Include="NamedParameter.cs" />
-    <Compile Include="ObjectActivatingFailedException.cs" />
-    <Compile Include="ObjectActivator.cs" />
-    <Compile Include="Parameter.cs" />
-    <Compile Include="ParameterExtensions.cs" />
+    <Compile Include="ILoggableException.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="ITypeConverter.cs" />
+    <Compile Include="IValidateAttribute.cs" />
+    <Compile Include="LogTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration.cs" />
-    <Compile Include="RegistrationManager.cs" />
-    <Compile Include="StartupAttribute.cs" />
-    <Compile Include="StartupTypeNotFoundException.cs" />
-    <Compile Include="TypedParameter.cs" />
-    <Compile Include="TypeEqualityChecker.cs" />
-    <Compile Include="TypeResolveFailedException.cs" />
-    <Compile Include="ValueParameter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Abstractions\Core.Abstractions.csproj">
-      <Project>{d99b16d4-829f-47f9-8530-eaf517bdab70}</Project>
-      <Name>Core.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.Utils\Core.Utils.csproj">
-      <Project>{230e597f-ec69-4367-8339-c4a87eb042e2}</Project>
-      <Name>Core.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class ValueParameter : Parameter
     {
         private object _value = null;
 
-        public ValueParameter(object Value)
+        public ValueParameter(object value)
         {
-            _value = Value;
+            _value = value;
         }
 
         public override bool CanProvideValue()

@@ -1,18 +1,18 @@
-﻿using TOF.Core.Configuration.Json;
+﻿using tofx.Core.Configuration.Json;
 
-namespace TOF.Core.Configuration
+namespace tofx.Core.Configuration
 {
     public static class JsonConfigurationBuilderExtensions
     {
-        public static IConfigurationBuilder AddJsonFile(this IConfigurationBuilder builder, string Path)
+        public static IConfigurationBuilder AddJsonFile(this IConfigurationBuilder builder, string path)
         {
-            builder.Add(new JsonConfigurationProvider(Path));
+            builder.Add(new JsonConfigurationProvider(path));
             return builder;
         }
 
-        public static IConfigurationBuilder AddJsonFile(this IConfigurationBuilder builder, string Path, bool optional)
+        public static IConfigurationBuilder AddJsonFile(this IConfigurationBuilder builder, string path, bool optional)
         {
-            builder.Add(new JsonConfigurationProvider(Path, optional));
+            builder.Add(new JsonConfigurationProvider(path, optional));
             return builder;
         }
     }

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>tofx.Core.DependencyInjection</id>
+    <version>3.0.0</version>
+    <title>TOFX Core Dependency Injection Services</title>
+    <authors>Jeff Chu @ K.NET</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>KTOFX Core Dependency Injection Services Library</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="tofx.Core.Abstractions" version="3.0.0-beta1-10002" />
+        <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="DependencyInjection\bin\Debug\tofx.Core.DependencyInjection.dll" target="lib\net462\tofx.Core.DependencyInjection.dll" />
+    <file src="DependencyInjection\bin\Debug\tofx.Core.DependencyInjection.pdb" target="lib\net462\tofx.Core.DependencyInjection.pdb" />
+  </files>
+</package>

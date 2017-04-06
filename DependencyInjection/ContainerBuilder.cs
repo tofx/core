@@ -1,11 +1,11 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class ContainerBuilder
     {
@@ -22,24 +22,24 @@ namespace TOF.Core.DependencyInjection
             return RegisterType(mapType);
         }
 
-        public Registration RegisterType(Type MapType)
+        public Registration RegisterType(Type mapType)
         {
-            ParameterChecker.NotNull(MapType);
+            ParameterChecker.NotNull(mapType);
 
             // exist registration.
-            if (_mapRegistrations.ContainsKey(MapType))
-                return _mapRegistrations[MapType];
+            if (_mapRegistrations.ContainsKey(mapType))
+                return _mapRegistrations[mapType];
 
             // new registration.
-            Registration registration = new Registration(MapType);
-            _mapRegistrations.Add(MapType, registration);
+            Registration registration = new Registration(mapType);
+            _mapRegistrations.Add(mapType, registration);
 
             return registration;
         }
 
-        public void RegisterTypesInLibs(string LibraryPath, string LibraryExtension = "*.dll", bool LoadFromStartup = true)
+        public void RegisterTypesInLibs(string libraryPath, string libraryExtension = "*.dll", bool loadFromStartup = true)
         {
-            var files = Directory.GetFiles(LibraryPath, LibraryExtension);
+            var files = Directory.GetFiles(libraryPath, libraryExtension);
 
             if (!files.Any())
                 return;
@@ -47,13 +47,13 @@ namespace TOF.Core.DependencyInjection
             foreach (var file in files)
             {
                 var assembly = Assembly.LoadFile(file);
-                RegisterTypesInAssembly(assembly, LoadFromStartup);
+                RegisterTypesInAssembly(assembly, loadFromStartup);
             }
         }
 
-        public void RegisterTypesInAssemblies(string AssemblyPath, bool LoadFromStartup = true)
+        public void RegisterTypesInAssemblies(string assemblyPath, bool loadFromStartup = true)
         {
-            var files = Directory.GetFiles(AssemblyPath);
+            var files = Directory.GetFiles(assemblyPath);
 
             if (!files.Any())
                 return;
@@ -64,10 +64,10 @@ namespace TOF.Core.DependencyInjection
                 {
                     var assembly = Assembly.LoadFile(file);
 
-                    if (LoadFromStartup)
-                        this.LoadFromStartup(assembly);
+                    if (loadFromStartup)
+                        LoadFromStartup(assembly);
                     else
-                        RegisterTypesInAssembly(assembly, LoadFromStartup);
+                        RegisterTypesInAssembly(assembly, loadFromStartup);
                 }
                 catch (FileLoadException)
                 {
@@ -80,30 +80,30 @@ namespace TOF.Core.DependencyInjection
             }
         }
 
-        public void RegisterTypesInAssemblies(IEnumerable<Assembly> Assemblies, bool LoadFromStartup = true)
+        public void RegisterTypesInAssemblies(IEnumerable<Assembly> assemblies, bool loadFromStartup = true)
         {
-            ParameterChecker.NotNull(Assemblies);
+            ParameterChecker.NotNull(assemblies);
 
-            if (!Assemblies.Any())
+            if (!assemblies.Any())
                 return;
 
-            foreach (var assembly in Assemblies)
-                RegisterTypesInAssembly(assembly, LoadFromStartup);
+            foreach (var assembly in assemblies)
+                RegisterTypesInAssembly(assembly, loadFromStartup);
         }
 
-        public void RegisterTypesInAssembly(Assembly Assembly, bool LoadFromStartup = true)
+        public void RegisterTypesInAssembly(Assembly assembly, bool loadFromStartup = true)
         {
-            ParameterChecker.NotNull(Assembly);
+            ParameterChecker.NotNull(assembly);
 
             try
             {
-                if (LoadFromStartup)
+                if (loadFromStartup)
                 {
-                    this.LoadFromStartup(Assembly);
+                    LoadFromStartup(assembly);
                 }
                 else
                 {
-                    var types = Assembly.GetTypes().Where(t => !t.IsPublic && t.IsClass);
+                    var types = assembly.GetTypes().Where(t => !t.IsPublic && t.IsClass);
 
                     foreach (var type in types)
                     {
@@ -126,10 +126,10 @@ namespace TOF.Core.DependencyInjection
             return (Container)container;
         }
 
-        private void LoadFromStartup(Assembly Assembly)
+        private void LoadFromStartup(Assembly assembly)
         {
             var startupAttributes =
-                Assembly.GetCustomAttributes(typeof(StartupAttribute), false) as StartupAttribute[];
+                assembly.GetCustomAttributes(typeof(StartupAttribute), false) as StartupAttribute[];
 
             if (startupAttributes != null && startupAttributes.Length > 0)
             {

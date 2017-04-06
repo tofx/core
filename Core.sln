@@ -3,7 +3,66 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "Abstractions\Abstractions.csproj", "{D99B16D4-829F-47F9-8530-EAF517BDAB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{9DD88232-D15B-44A3-8F28-F4C37245E49A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.DotNet", "Configuration.DotNet\Configuration.DotNet.csproj", "{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Json", "Configuration.Json\Configuration.Json.csproj", "{2259E597-781E-425A-B165-59D8C700C323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{8F4C4C50-C046-499A-AD78-2E55F51A123A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{AA9700AD-96A0-40BD-8BCA-55870B8C6706}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{230E597F-EC69-4367-8339-C4A87EB042E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{228FD88C-8D4F-4C53-8493-F3E6D324AA17}"
+	ProjectSection(SolutionItems) = preProject
+		tofx.Core.Abstractions.3.0.0.nuspec = tofx.Core.Abstractions.3.0.0.nuspec
+		tofx.Core.Configuration.3.0.0.nuspec = tofx.Core.Configuration.3.0.0.nuspec
+		tofx.Core.Configuration.DotNet.3.0.0.nuspec = tofx.Core.Configuration.DotNet.3.0.0.nuspec
+		tofx.Core.Configuration.Json.3.0.0.nuspec = tofx.Core.Configuration.Json.3.0.0.nuspec
+		tofx.Core.DependencyInjection.3.0.0.nuspec = tofx.Core.DependencyInjection.3.0.0.nuspec
+		tofx.Core.Infrastructure.3.0.0.nuspec = tofx.Core.Infrastructure.3.0.0.nuspec
+		tofx.Core.Utils.3.0.0.nuspec = tofx.Core.Utils.3.0.0.nuspec
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D99B16D4-829F-47F9-8530-EAF517BDAB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99B16D4-829F-47F9-8530-EAF517BDAB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99B16D4-829F-47F9-8530-EAF517BDAB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99B16D4-829F-47F9-8530-EAF517BDAB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD88232-D15B-44A3-8F28-F4C37245E49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD88232-D15B-44A3-8F28-F4C37245E49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD88232-D15B-44A3-8F28-F4C37245E49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD88232-D15B-44A3-8F28-F4C37245E49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70FB0E8-6D9F-474E-A23C-3DA7AA4618CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2259E597-781E-425A-B165-59D8C700C323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2259E597-781E-425A-B165-59D8C700C323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2259E597-781E-425A-B165-59D8C700C323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2259E597-781E-425A-B165-59D8C700C323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4C4C50-C046-499A-AD78-2E55F51A123A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4C4C50-C046-499A-AD78-2E55F51A123A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4C4C50-C046-499A-AD78-2E55F51A123A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4C4C50-C046-499A-AD78-2E55F51A123A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA9700AD-96A0-40BD-8BCA-55870B8C6706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9700AD-96A0-40BD-8BCA-55870B8C6706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9700AD-96A0-40BD-8BCA-55870B8C6706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9700AD-96A0-40BD-8BCA-55870B8C6706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{230E597F-EC69-4367-8339-C4A87EB042E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{230E597F-EC69-4367-8339-C4A87EB042E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{230E597F-EC69-4367-8339-C4A87EB042E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{230E597F-EC69-4367-8339-C4A87EB042E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

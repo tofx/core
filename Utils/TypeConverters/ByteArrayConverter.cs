@@ -1,33 +1,33 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 using System.Linq;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class ByteArrayConverter : ITypeConverter
     {
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return new byte[] { };
 
-            if (ValueToConvert.GetType() == typeof(string))
+            if (valueToConvert.GetType() == typeof(string))
             {
-                if (string.IsNullOrEmpty(ValueToConvert.ToString()))
+                if (string.IsNullOrEmpty(valueToConvert.ToString()))
                     return new byte[] { };
                 else
-                    return System.Convert.FromBase64String(ValueToConvert.ToString());
+                    return System.Convert.FromBase64String(valueToConvert.ToString());
             }
             else
             {
-                return (byte[])ValueToConvert;
+                return (byte[])valueToConvert;
             }
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            byte[] data1 = (byte[])Convert(Value1);
-            byte[] data2 = (byte[])Convert(Value2);
+            byte[] data1 = (byte[])Convert(value1);
+            byte[] data2 = (byte[])Convert(value2);
 
             if (data1.Length != data2.Length)
                 return false;

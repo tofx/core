@@ -1,8 +1,8 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class Registration
     {
@@ -24,9 +24,9 @@ namespace TOF.Core.DependencyInjection
             ActivateParameters = new List<Parameter>();
         }
 
-        public Registration(Type RegisterType) : this()
+        public Registration(Type registerType) : this()
         {
-            ConcreteType = RegisterType;
+            ConcreteType = registerType;
         }
 
         public Registration As<T>()
@@ -34,54 +34,54 @@ namespace TOF.Core.DependencyInjection
             return As(typeof(T));
         }
 
-        public Registration As(Type MapType)
+        public Registration As(Type mapType)
         {
-            ParameterChecker.NotNull(MapType);
+            ParameterChecker.NotNull(mapType);
 
-            if (!MapTypes.Contains(MapType))
-                MapTypes.Add(MapType);
+            if (!MapTypes.Contains(mapType))
+                MapTypes.Add(mapType);
 
             return this;
         }
 
         public Registration AsDefault()
         {
-            this.IsDefault = true;
+            IsDefault = true;
             return this;
         }
 
-        public Registration WithInstance(object Instance)
+        public Registration WithInstance(object instance)
         {
-            this.Instance = Instance;
+            Instance = instance;
             return this;
         }
 
-        public Registration WithParameter(string Name, object Value)
+        public Registration WithParameter(string name, object value)
         {
-            return WithParameter(new NamedParameter(Name, Value));
+            return WithParameter(new NamedParameter(name, value));
         }
 
-        public Registration WithParameter(Parameter Parameter)
+        public Registration WithParameter(Parameter parameter)
         {
-            this.ActivateParameters.Add(Parameter);
+            ActivateParameters.Add(parameter);
             return this;
         }
 
         public Registration AsSingleInstance()
         {
-            this.IsSingleInstance = true;
+            IsSingleInstance = true;
             return this;
         }
 
         public Registration PropertiesAutowired()
         {
-            this.IsPropertiesAutowired = true;
+            IsPropertiesAutowired = true;
             return this;
         }
 
-        public Registration OnActivating(Func<Container, IEnumerable<Parameter>, object> ActivatorFunc)
+        public Registration OnActivating(Func<Container, IEnumerable<Parameter>, object> activatorFunc)
         {
-            Activator = ActivatorFunc;
+            Activator = activatorFunc;
             return this;
         }
     }

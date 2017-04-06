@@ -1,15 +1,15 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class ObjectActivatingFailedException : Exception, ILoggableException
     {
         private string _failType = null;
 
-        public ObjectActivatingFailedException(string FailType)
+        public ObjectActivatingFailedException(string failType)
         {
-            _failType = FailType;
+            _failType = failType;
         }
 
         public string WriteLog(ILogger logger)

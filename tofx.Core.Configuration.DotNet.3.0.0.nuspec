@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>tofx.Core.Configuration.DotNet</id>
+    <version>3.0.0</version>
+    <title>TOFX Core Configuration Services for .NET Configuration System Platform</title>
+    <authors>Jeff Chu @ K.NET</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>TOFX Core Services Configuration extension for .NET Configuration Platform</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="tofx.Core.Configuration" version="3.0.0-beta1-10002" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Configuration.DotNet\bin\Debug\tofx.Core.Configuration.DotNet.dll" target="lib\net462\tofx.Core.Configuration.DotNet.dll" />
+    <file src="Configuration.DotNet\bin\Debug\tofx.Core.Configuration.DotNet.pdb" target="lib\net462\tofx.Core.Configuration.DotNet.pdb" />
+  </files>
+</package>

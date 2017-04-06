@@ -1,24 +1,24 @@
-﻿using TOF.Core.Utils;
+﻿using tofx.Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TOF.Core.DependencyInjection
+namespace tofx.Core.DependencyInjection
 {
     public class ObjectActivator
     {
-        public object Create(Container Container, Registration Registration, params Parameter[] Parameters)
+        public object Create(Container container, Registration registration, params Parameter[] parameters)
         {
-            ParameterChecker.NotNull(Container);
-            ParameterChecker.NotNull(Registration);
+            ParameterChecker.NotNull(container);
+            ParameterChecker.NotNull(registration);
             
             object instance = null;
 
-            if (Registration.Activator != null)
+            if (registration.Activator != null)
             {
-                instance = Registration.Activator(
-                    Container, 
-                    BindingRegistrationParametersAndActivateParameters(Registration.ActivateParameters, Parameters));
+                instance = registration.Activator(
+                    container, 
+                    BindingRegistrationParametersAndActivateParameters(registration.ActivateParameters, parameters));
 
                 if (instance == null)
                     throw new ObjectActivatingFailedException("ActivatorReturnNull");
@@ -26,14 +26,14 @@ namespace TOF.Core.DependencyInjection
                     return instance;
             }
 
-            List<Type> parameterTypes = new List<Type>();
-            List<object> parameterValues = new List<object>();
+            var parameterTypes = new List<Type>();
+            var parameterValues = new List<object>();
 
-            if (Registration.ActivateParameters.Count > 0)
+            if (registration.ActivateParameters.Count > 0)
             {
-                foreach (var parameter in Registration.ActivateParameters)
+                foreach (var parameter in registration.ActivateParameters)
                 {
-                    var activatorParameter = parameter as Parameter;
+                    var activatorParameter = parameter;
 
                     if (activatorParameter.CanProvideValue())
                     {
@@ -49,9 +49,9 @@ namespace TOF.Core.DependencyInjection
 
             }
             
-            if (parameterTypes.Any() || (Parameters != null && Parameters.Count() > 0))
+            if (parameterTypes.Any() || (parameters != null && parameters.Any()))
             {
-                foreach (var parameter in Parameters)
+                foreach (var parameter in parameters)
                 {
                     var activatorParameter = parameter as Parameter;
                     //var paramQuery = parameterTypes.Where(t => t == parameter.GetValue().GetType());
@@ -81,7 +81,7 @@ namespace TOF.Core.DependencyInjection
                     //}
                 }
 
-                var constructor = Registration.ConcreteType.GetConstructor(parameterTypes.ToArray());
+                var constructor = registration.ConcreteType.GetConstructor(parameterTypes.ToArray());
 
                 if (constructor == null)
                     throw new ObjectActivatingFailedException("ObjectConstructorNotMatchToParameter");
@@ -90,46 +90,42 @@ namespace TOF.Core.DependencyInjection
             }
             else
             {
-                if (Registration.ConcreteType.GetConstructor(Type.EmptyTypes) == null)
+                if (registration.ConcreteType.GetConstructor(Type.EmptyTypes) == null)
                 {
-                    var constructorQuery = Registration.ConcreteType.GetConstructors()
+                    var constructorQuery = registration.ConcreteType.GetConstructors()
                         .OrderByDescending(ctor => ctor.GetParameters().Length);
 
                     if (!constructorQuery.Any())
                         throw new ObjectActivatingFailedException("ObjectConstructorNotFound");
 
                     var ci = constructorQuery.First();
-                    List<object> parameters = new List<object>();
+                    List<object> constructorParams = new List<object>();
 
                     foreach (var ciParam in ci.GetParameters())
                     {
                         if (ciParam.ParameterType.IsInterface)
-                            parameters.Add(Container.Resolve(ciParam.ParameterType));
+                            constructorParams.Add(container.Resolve(ciParam.ParameterType));
                         else
                         {
                             if (ciParam.ParameterType.IsValueType)
-                                parameters.Add(Activator.CreateInstance(ciParam.ParameterType));
+                                constructorParams.Add(Activator.CreateInstance(ciParam.ParameterType));
                             else
                             {
                                 var concreteClassConstructor = ciParam.ParameterType.GetConstructor(Type.EmptyTypes);
 
                                 if (concreteClassConstructor == null)
-                                {
                                     throw new ObjectActivatingFailedException("SupportDefaultConstructorOnly");
-                                }
-                                else
-                                {
-                                    parameters.Add(Activator.CreateInstance(ciParam.ParameterType));
-                                }
+
+                                constructorParams.Add(Activator.CreateInstance(ciParam.ParameterType));
                             }
                         }
                     }
 
-                    instance = ci.Invoke(parameters.ToArray());
+                    instance = ci.Invoke(constructorParams.ToArray());
                 }
                 else
                 {
-                    instance = Activator.CreateInstance(Registration.ConcreteType);
+                    instance = Activator.CreateInstance(registration.ConcreteType);
                 }
             }
 
@@ -137,40 +133,40 @@ namespace TOF.Core.DependencyInjection
         }
 
         public object CreateGeneric(
-            Container Container, Registration Registration, 
-            Type[] GenericParameterTypes, params Parameter[] Parameters)
+            Container container, Registration registration, 
+            Type[] genericParameterTypes, params Parameter[] parameters)
         {
-            ParameterChecker.NotNull(Container);
-            ParameterChecker.NotNull(Registration);
-            ParameterChecker.NotNull(GenericParameterTypes);
+            ParameterChecker.NotNull(container);
+            ParameterChecker.NotNull(registration);
+            ParameterChecker.NotNull(genericParameterTypes);
 
-            if (GenericParameterTypes.Length == 0)
+            if (genericParameterTypes.Length == 0)
                 throw new ObjectActivatingFailedException("GenericTypeDefintionIsEmpty");
 
-            Type generiedType = Registration.ConcreteType.MakeGenericType(GenericParameterTypes);
+            var generiedType = registration.ConcreteType.MakeGenericType(genericParameterTypes);
 
-            object instance = null;
+            object instance;
 
-            if (Registration.Activator != null)
+            if (registration.Activator != null)
             {
-                instance = Registration.Activator(
-                    Container, 
-                    BindingRegistrationParametersAndActivateParameters(Registration.ActivateParameters, Parameters));
+                instance = registration.Activator(
+                    container, 
+                    BindingRegistrationParametersAndActivateParameters(registration.ActivateParameters, parameters));
 
                 if (instance == null)
                     throw new ObjectActivatingFailedException("ActivatorReturnNull");
-                else
-                    return instance;
+
+                return instance;
             }
 
-            List<Type> parameterTypes = new List<Type>();
-            List<object> parameterValues = new List<object>();
+            var parameterTypes = new List<Type>();
+            var parameterValues = new List<object>();
 
-            if (Registration.ActivateParameters.Count > 0)
+            if (registration.ActivateParameters.Count > 0)
             {
-                foreach (var parameter in Registration.ActivateParameters)
+                foreach (var parameter in registration.ActivateParameters)
                 {
-                    var activatorParameter = parameter as Parameter;
+                    var activatorParameter = parameter;
 
                     if (activatorParameter.CanProvideValue())
                     {
@@ -186,11 +182,11 @@ namespace TOF.Core.DependencyInjection
 
             }
 
-            if (parameterTypes.Any() || (Parameters != null && Parameters.Count() > 0))
+            if (parameterTypes.Any() || (parameters != null && parameters.Any()))
             {
-                foreach (var parameter in Parameters)
+                foreach (var parameter in parameters)
                 {
-                    var activatorParameter = parameter as Parameter;
+                    var activatorParameter = parameter;
                     //var paramQuery = parameterTypes.Where(t => t == parameter.GetValue().GetType());
 
                     //if (paramQuery.Any())
@@ -205,7 +201,7 @@ namespace TOF.Core.DependencyInjection
                     //}
                     //else
                     //{
-                        activatorParameter = parameter as Parameter;
+                        //activatorParameter = parameter;
 
                         if (activatorParameter.CanProvideValue())
                         {
@@ -238,16 +234,16 @@ namespace TOF.Core.DependencyInjection
                         throw new ObjectActivatingFailedException("ObjectConstructorNotFound");
 
                     var ci = constructorQuery.First();
-                    List<object> parameters = new List<object>();
+                    var constructorParams = new List<object>();
 
                     foreach (var ciParam in ci.GetParameters())
                     {
                         if (ciParam.ParameterType.IsInterface)
-                            parameters.Add(Container.Resolve(ciParam.ParameterType));
+                            constructorParams.Add(container.Resolve(ciParam.ParameterType));
                         else
                         {
                             if (ciParam.ParameterType.IsValueType)
-                                parameters.Add(Activator.CreateInstance(ciParam.ParameterType));
+                                constructorParams.Add(Activator.CreateInstance(ciParam.ParameterType));
                             else
                             {
                                 var concreteClassConstructor = ciParam.ParameterType.GetConstructor(Type.EmptyTypes);
@@ -256,15 +252,13 @@ namespace TOF.Core.DependencyInjection
                                 {
                                     throw new ObjectActivatingFailedException("SupportDefaultConstructorOnly");
                                 }
-                                else
-                                {
-                                    parameters.Add(Activator.CreateInstance(ciParam.ParameterType));
-                                }
+
+                                constructorParams.Add(Activator.CreateInstance(ciParam.ParameterType));
                             }
                         }
                     }
 
-                    instance = ci.Invoke(parameters.ToArray());
+                    instance = ci.Invoke(constructorParams.ToArray());
                 }
                 else
                 {
@@ -275,14 +269,14 @@ namespace TOF.Core.DependencyInjection
             return instance;
         }
 
-        private IEnumerable<Parameter> BindingRegistrationParametersAndActivateParameters(
-            IEnumerable<Parameter> RegistrationParameters, IEnumerable<Parameter> ActivateParameters)
+        private static IEnumerable<Parameter> BindingRegistrationParametersAndActivateParameters(
+            IEnumerable<Parameter> registrationParameters, IEnumerable<Parameter> activateParameters)
         {
-            List<Parameter> parameters = new List<Parameter>();
+            var parameters = new List<Parameter>();
 
-            if (RegistrationParameters.Any())
+            if (registrationParameters.Any())
             {
-                foreach (var param in RegistrationParameters)
+                foreach (var param in registrationParameters)
                 {
                     int idx = parameters.FindIndex(p => p.GetValue().GetType() == param.GetValue().GetType());
 
@@ -293,9 +287,9 @@ namespace TOF.Core.DependencyInjection
                 }
             }
 
-            if (ActivateParameters.Any())
+            if (activateParameters.Any())
             {
-                foreach (var param in ActivateParameters)
+                foreach (var param in activateParameters)
                 {
                     int idx = parameters.FindIndex(p => p.GetValue().GetType() == param.GetValue().GetType());
 

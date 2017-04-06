@@ -7,10 +7,11 @@
     <ProjectGuid>{AA9700AD-96A0-40BD-8BCA-55870B8C6706}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TOF.Core.Infrastructure</RootNamespace>
-    <AssemblyName>TOF.Core.Infrastructure</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>tofx.Core.Infrastructure</RootNamespace>
+    <AssemblyName>tofx.Core.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,13 +46,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Configuration\Core.Configuration.csproj">
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
       <Project>{9dd88232-d15b-44a3-8f28-f4c37245e49a}</Project>
-      <Name>Core.Configuration</Name>
+      <Name>Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.DependencyInjection\Core.DependencyInjection.csproj">
+    <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj">
       <Project>{8f4c4c50-c046-499a-ad78-2e55f51a123a}</Project>
-      <Name>Core.DependencyInjection</Name>
+      <Name>DependencyInjection</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

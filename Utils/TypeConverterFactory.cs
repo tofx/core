@@ -1,21 +1,21 @@
-﻿using TOF.Core.Abstractions;
-using TOF.Core.Utils.TypeConverters;
+﻿using tofx.Core.Abstractions;
+using tofx.Core.Utils.TypeConverters;
 using System;
 using System.Collections.Generic;
 
-namespace TOF.Core.Utils
+namespace tofx.Core.Utils
 {
     public class TypeConverterFactory
     {
         private Dictionary<Type, ITypeConverter> _converters = null;
 
-        public TypeConverterFactory(IEnumerable<ITypeConverter> Converters)
+        public TypeConverterFactory(IEnumerable<ITypeConverter> converters)
         {
-            ParameterChecker.NotNull(Converters);
+            ParameterChecker.NotNull(converters);
 
             _converters = new Dictionary<Type, ITypeConverter>();
 
-            foreach (var converter in Converters)
+            foreach (var converter in converters)
                 _converters.Add(converter.GetCompatibleType(), converter);
         }
 

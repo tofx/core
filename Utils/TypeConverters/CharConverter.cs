@@ -1,22 +1,22 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class CharConverter : ITypeConverter
     {
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return (char)0x0;
 
-            return System.Convert.ToChar(ValueToConvert);
+            return System.Convert.ToChar(valueToConvert);
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            char v1 = (char)Convert(Value1);
-            char v2 = (char)Convert(Value2);
+            char v1 = (char)Convert(value1);
+            char v2 = (char)Convert(value2);
 
             return v1 == v2;
         }

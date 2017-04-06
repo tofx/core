@@ -1,29 +1,29 @@
-﻿using TOF.Core.Abstractions;
+﻿using tofx.Core.Abstractions;
 using System;
 
-namespace TOF.Core.Utils.TypeConverters
+namespace tofx.Core.Utils.TypeConverters
 {
     public class BooleanConverter : ITypeConverter
     {
-        public object Convert(object ValueToConvert)
+        public object Convert(object valueToConvert)
         {
-            if (ValueToConvert == null || ValueToConvert == DBNull.Value)
+            if (valueToConvert == null || valueToConvert == DBNull.Value)
                 return false;
 
-            if (string.IsNullOrEmpty(ValueToConvert.ToString()))
+            if (string.IsNullOrEmpty(valueToConvert.ToString()))
                 return false;
-            else if (ValueToConvert.ToString() == "0")
+            if (valueToConvert.ToString() == "0")
                 return false;
-            else if (ValueToConvert.ToString() == "1")
+            if (valueToConvert.ToString() == "1")
                 return true;
-            else
-                return System.Convert.ToBoolean(ValueToConvert);
+
+            return System.Convert.ToBoolean(valueToConvert);
         }
 
-        public bool IsEqual(object Value1, object Value2)
+        public bool IsEqual(object value1, object value2)
         {
-            bool v1 = (bool)Convert(Value1);
-            bool v2 = (bool)Convert(Value2);
+            var v1 = (bool)Convert(value1);
+            var v2 = (bool)Convert(value2);
 
             return v1 == v2;
         }

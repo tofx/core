@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Text;
 
-namespace TOF.Core.Utils.TypeExtensions
+namespace tofx.Core.Utils.TypeExtensions
 {
     public static class BytesArrayExtensions
     {
-        public static string ToHexString(this byte[] data, bool UpperCase = false)
+        public static string ToHexString(this byte[] data, bool upperCase = false)
         {
-            return (UpperCase) 
+            return (upperCase) 
                 ? BitConverter.ToString(data).ToUpper().Replace("-", "")
                 : BitConverter.ToString(data).ToLower().Replace("-", "");
         }
@@ -23,21 +23,21 @@ namespace TOF.Core.Utils.TypeExtensions
             return s;
         }
 
-        public static string ToByteString(this byte[] data, string Pattern = "{0}")
+        public static string ToByteString(this byte[] data, string pattern = "{0}")
         {
             var sb = new StringBuilder();
 
             foreach (var b in data)
-                sb.Append(string.Format(Pattern, b.ToString("X")));
+                sb.Append(string.Format(pattern, b.ToString("X")));
 
             return sb.ToString();
         }
 
-        public static byte[] Merge(this byte[] data, byte[] DataToMerge)
+        public static byte[] Merge(this byte[] data, byte[] dataToMerge)
         {
-            byte[] c = new byte[data.Length + DataToMerge.Length];
+            byte[] c = new byte[data.Length + dataToMerge.Length];
             Buffer.BlockCopy(data, 0, c, 0, data.Length);
-            Buffer.BlockCopy(DataToMerge, 0, c, data.Length, DataToMerge.Length);
+            Buffer.BlockCopy(dataToMerge, 0, c, data.Length, dataToMerge.Length);
             return c;
         }
 

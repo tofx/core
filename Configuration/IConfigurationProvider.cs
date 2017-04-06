@@ -1,9 +1,9 @@
-﻿namespace TOF.Core.Configuration
+﻿namespace tofx.Core.Configuration
 {
     public interface IConfigurationProvider
     {
-        bool TryGet(string Key, out string Value);
-        void Set(string Key, string Value);
+        bool TryGet(string key, out string value);
+        void Set(string key, string value);
         void Load();
     }
 }

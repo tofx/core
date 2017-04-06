@@ -1,8 +1,8 @@
-﻿namespace TOF.Core.Configuration
+﻿namespace tofx.Core.Configuration
 {
     public interface IConfigurationBuilder
     {
-        void Add(IConfigurationProvider Provider);
+        void Add(IConfigurationProvider provider);
         IConfiguration Build();
     }
 }

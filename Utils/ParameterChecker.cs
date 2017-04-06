@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TOF.Core.Utils
+namespace tofx.Core.Utils
 {
     public class ParameterChecker
     {
@@ -10,10 +10,10 @@ namespace TOF.Core.Utils
                 throw new ArgumentNullException("ValueNotAllowNull");
         }
 
-        public static void NotNull(object item, string Message)
+        public static void NotNull(object item, string message)
         {
             if (item == null)
-                throw new ArgumentNullException(Message);
+                throw new ArgumentNullException(message);
         }
 
         public static void NotNull(object item, Exception exception)
@@ -28,10 +28,10 @@ namespace TOF.Core.Utils
                 throw (TException)Activator.CreateInstance(typeof(TException), "ValueNotAllowNull");
         }
 
-        public static void NotNull<TException>(object item, string Message) where TException : Exception
+        public static void NotNull<TException>(object item, string message) where TException : Exception
         {
             if (item == null)
-                throw (TException)Activator.CreateInstance(typeof(TException), Message);
+                throw (TException)Activator.CreateInstance(typeof(TException), message);
         }
 
         public static void NotNullOrEmpty(string item)
@@ -40,7 +40,7 @@ namespace TOF.Core.Utils
                 throw new ArgumentNullException("ValueNotAllowNull");
         }
 
-        public static void NotNullOrEmpty(string item, string Message)
+        public static void NotNullOrEmpty(string item, string message)
         {
             if (string.IsNullOrEmpty(item))
                 throw new ArgumentNullException("ValueNotAllowNull");
@@ -58,10 +58,10 @@ namespace TOF.Core.Utils
                 throw (TException)Activator.CreateInstance(typeof(TException), "ValueNotAllowNull");
         }
 
-        public static void NotNullOrEmpty<TException>(string item, string Message) where TException : Exception
+        public static void NotNullOrEmpty<TException>(string item, string message) where TException : Exception
         {
             if (string.IsNullOrEmpty(item))
-                throw (TException)Activator.CreateInstance(typeof(TException), Message);
+                throw (TException)Activator.CreateInstance(typeof(TException), message);
         }
     }
 }

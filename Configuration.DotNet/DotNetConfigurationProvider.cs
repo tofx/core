@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
-namespace TOF.Core.Configuration.DotNet
+namespace tofx.Core.Configuration.DotNet
 {
     public class DotNetConfigurationProvider : ConfigurationProvider
     {
@@ -11,7 +11,7 @@ namespace TOF.Core.Configuration.DotNet
         private Stack<string> _keyStack = new Stack<string>();
         private string _currentPath = null;
         
-        public override void Set(string Key, string Value)
+        public override void Set(string key, string value)
         {
             // do not implement because unusable.
         }
@@ -43,29 +43,29 @@ namespace TOF.Core.Configuration.DotNet
 
             LeaveLevel();
 
-            this.ConfigurationValues = this._configurationValues;
+            ConfigurationValues = _configurationValues;
         }
 
-        private void TraverseValue(string Value)
+        private void TraverseValue(string value)
         {
-            string key = this._currentPath;
+            string key = _currentPath;
 
-            if (this._configurationValues.ContainsKey(key))
+            if (_configurationValues.ContainsKey(key))
                 throw new InvalidOperationException("ERROR_DUPLICATED_KEY_FOUND");
 
-            this._configurationValues.Add(key, Value);
+            _configurationValues.Add(key, value);
         }
 
-        private void EnterNextLevel(string PropertyName)
+        private void EnterNextLevel(string propertyName)
         {
-            this._keyStack.Push(PropertyName);
-            this._currentPath = string.Join(Constants.Delimiter, this._keyStack.Reverse());
+            _keyStack.Push(propertyName);
+            _currentPath = string.Join(Constants.Delimiter, _keyStack.Reverse());
         }
 
         private void LeaveLevel()
         {
-            this._keyStack.Pop();
-            this._currentPath = string.Join(Constants.Delimiter, this._keyStack.Reverse());
+            _keyStack.Pop();
+            _currentPath = string.Join(Constants.Delimiter, _keyStack.Reverse());
         }
     }
 }
