@@ -20,12 +20,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{228FD88C-8D4F-4C53-8493-F3E6D324AA17}"
 	ProjectSection(SolutionItems) = preProject
 		tofx.Core.Abstractions.nuspec = tofx.Core.Abstractions.nuspec
-		tofx.Core.Configuration.DotNet.3.0.0.nuspec = tofx.Core.Configuration.DotNet.3.0.0.nuspec
-		tofx.Core.Configuration.Json.3.0.0.nuspec = tofx.Core.Configuration.Json.3.0.0.nuspec
+		tofx.Core.Configuration.DotNet.nuspec = tofx.Core.Configuration.DotNet.nuspec
+		tofx.Core.Configuration.Json.nuspec = tofx.Core.Configuration.Json.nuspec
 		tofx.Core.Configuration.nuspec = tofx.Core.Configuration.nuspec
-		tofx.Core.DependencyInjection.3.0.0.nuspec = tofx.Core.DependencyInjection.3.0.0.nuspec
-		tofx.Core.Infrastructure.3.0.0.nuspec = tofx.Core.Infrastructure.3.0.0.nuspec
-		tofx.Core.Utils.3.0.0.nuspec = tofx.Core.Utils.3.0.0.nuspec
+		tofx.Core.DependencyInjection.nuspec = tofx.Core.DependencyInjection.nuspec
+		tofx.Core.Infrastructure.nuspec = tofx.Core.Infrastructure.nuspec
+		tofx.Core.Utils.nuspec = tofx.Core.Utils.nuspec
 	EndProjectSection
 EndProject
 Global

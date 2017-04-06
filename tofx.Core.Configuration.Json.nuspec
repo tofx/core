@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>tofx.Core.Configuration.Json</id>
-    <version>3.0.0</version>
+    <id>$id$</id>
+    <version>$buildversion$</version>
     <title>TOFX Core Configuration Services for Json Configuration</title>
-    <authors>Jeff Chu @ K.NET</authors>
+    <authors>$author$</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>TOFX Core Services Configuration extension for Json Configuration</description>
+    <description>$description$</description>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2">
         <!--<dependency id="tofx.Core.Configuration" version="3.0.0-beta1-10002" />
@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Configuration.Json\bin\Debug\tofx.Core.Configuration.Json.dll" target="lib\net462\tofx.Core.Configuration.Json.dll" />
-    <file src="Configuration.Json\bin\Debug\tofx.Core.Configuration.Json.pdb" target="lib\net462\tofx.Core.Configuration.Json.pdb" />
+    <file src="Configuration.Json\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
+    <file src="Configuration.Json\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
   </files>
 </package>
