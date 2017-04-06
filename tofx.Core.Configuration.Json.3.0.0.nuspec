@@ -9,8 +9,8 @@
     <description>TOFX Core Services Configuration extension for Json Configuration</description>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2">
-        <dependency id="tofx.Core.Configuration" version="3.0.0-beta1-10002" />
-        <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />
+        <!--<dependency id="tofx.Core.Configuration" version="3.0.0-beta1-10002" />
+        <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />-->
         <dependency id="Newtonsoft.Json" version="9.0.1" />
       </group>
     </dependencies>

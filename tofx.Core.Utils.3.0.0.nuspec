@@ -7,11 +7,11 @@
     <authors>Jeff Chu @ K.NET</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>TOFX Core Services utility and helpers.</description>
-    <dependencies>
+    <!--<dependencies>
       <group targetFramework=".NETFramework4.6.2">
         <dependency id="tofx.Core.Abstractions" version="3.0.0-beta1-10002" />
       </group>
-    </dependencies>
+    </dependencies>-->
   </metadata>
   <files>
     <file src="Utils\bin\Debug\tofx.Core.Utils.dll" target="lib\net462\tofx.Core.Utils.dll" />

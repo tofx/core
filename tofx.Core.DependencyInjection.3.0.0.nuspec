@@ -7,12 +7,12 @@
     <authors>Jeff Chu @ K.NET</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>KTOFX Core Dependency Injection Services Library</description>
-    <dependencies>
+    <!--<dependencies>
       <group targetFramework=".NETFramework4.6.2">
         <dependency id="tofx.Core.Abstractions" version="3.0.0-beta1-10002" />
         <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />
       </group>
-    </dependencies>
+    </dependencies>-->
   </metadata>
   <files>
     <file src="DependencyInjection\bin\Debug\tofx.Core.DependencyInjection.dll" target="lib\net462\tofx.Core.DependencyInjection.dll" />
