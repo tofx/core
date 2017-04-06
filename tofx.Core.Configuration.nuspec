@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>tofx.Core.Configuration</id>
-    <version>3.0.0</version>
+    <id>$id$</id>
+    <version>$buildversion$</version>
     <title>TOFX Core Configuration Services</title>
-    <authors>Jeff Chu @ K.NET</authors>
+    <authors>$author$</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>TOFX Core Services Configuration Foundation Library</description>
+    <description>$description$</description>
     <!--<dependencies>
       <group targetFramework=".NETFramework4.6.2">
         <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />
@@ -14,7 +14,7 @@
     </dependencies>-->
   </metadata>
   <files>
-    <file src="Configuration\bin\Debug\tofx.Core.Configuration.dll" target="lib\net462\tofx.Core.Configuration.dll" />
-    <file src="Configuration\bin\Debug\tofx.Core.Configuration.pdb" target="lib\net462\tofx.Core.Configuration.pdb" />
+    <file src="Configuration\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
+    <file src="Configuration\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
   </files>
 </package>
