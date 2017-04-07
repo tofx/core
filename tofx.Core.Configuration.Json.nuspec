@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>$id$</id>
-    <version>$buildversion$</version>
+    <id>tofx.Core.Configuration.Json</id>
+    <version></version>
     <title>TOFX Core Configuration Services for Json Configuration</title>
-    <authors>$author$</authors>
+    <authors>Jeff Chu @ K.NET</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>TOFX Core Configuration Services for Json formatted configuration source.</description>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2">
-        <!--<dependency id="tofx.Core.Configuration" version="3.0.0-beta1-10002" />
-        <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />-->
+        <dependency id="tofx.Core.Configuration" version="3.0.0" />
+        <dependency id="tofx.Core.Utils" version="3.0.0" />
         <dependency id="Newtonsoft.Json" version="9.0.1" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="Configuration.Json\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
-    <file src="Configuration.Json\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
+    <file src="Configuration.Json\bin\Debug\tofx.Core.Configuration.Json.dll" target="lib\net462\tofx.Core.Configuration.Json.dll" />
+    <file src="Configuration.Json\bin\Debug\tofx.Core.Configuration.Json.pdb" target="lib\net462\tofx.Core.Configuration.Json.pdb" />
   </files>
 </package>

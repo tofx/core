@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>$id$</id>
-    <version>$buildversion$</version>
+    <id>tofx.Core.DependencyInjection</id>
+    <version></version>
     <title>TOFX Core Dependency Injection Services</title>
-    <authors>$author$</authors>
+    <authors>Jeff Chu @ K.NET</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <!--<dependencies>
+    <description>TOFX Core Dependency Injection Services.</description>
+    <dependencies>
       <group targetFramework=".NETFramework4.6.2">
-        <dependency id="tofx.Core.Abstractions" version="3.0.0-beta1-10002" />
-        <dependency id="tofx.Core.Utils" version="3.0.0-beta1-10002" />
+        <dependency id="tofx.Core.Abstractions" version="3.0.0" />
+        <dependency id="tofx.Core.Utils" version="3.0.0" />
       </group>
-    </dependencies>-->
+    </dependencies>
   </metadata>
   <files>
-    <file src="DependencyInjection\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
-    <file src="DependencyInjection\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
+    <file src="DependencyInjection\bin\Debug\tofx.Core.DependencyInjection.dll" target="lib\net462\tofx.Core.DependencyInjection.dll" />
+    <file src="DependencyInjection\bin\Debug\tofx.Core.DependencyInjection.pdb" target="lib\net462\tofx.Core.DependencyInjection.pdb" />
   </files>
 </package>

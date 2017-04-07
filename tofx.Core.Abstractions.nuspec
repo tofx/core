@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>$id$</id>
-        <version>$buildversion$</version>
-        <title>$title$</title>
-        <authors>$author$</authors>
+        <id>tofx.Core.Abstractions</id>
+        <version></version>
+        <title>TOFX Core Service Abstractions</title>
+        <authors>Jeff Chu @ K.NET</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>$description$</description>
+        <description>TOFX Core Service abstractions library.</description>
     </metadata>
     <files>
-        <file src="Abstractions\bin\Debug\$id$.dll" target="lib\net462\$id$.dll" />
-        <file src="Abstractions\bin\Debug\$id$.pdb" target="lib\net462\$id$.pdb" />
+        <file src="Abstractions\bin\Debug\tofx.Core.Abstractions.dll" target="lib\net462\tofx.Core.Abstractions.dll" />
+        <file src="Abstractions\bin\Debug\tofx.Core.Abstractions.pdb" target="lib\net462\tofx.Core.Abstractions.pdb" />
     </files>
 </package>
