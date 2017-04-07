@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>tofx.Core.DependencyInjection</id>
-    <version></version>
+    <version>3.0.0-beta</version>
     <title>TOFX Core Dependency Injection Services</title>
     <authors>Jeff Chu @ K.NET</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
